@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* ── Enable dark mode via .dark class on <html> ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Global resets ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Light mode (default) ── */
+:root {
+  --bg-page:        #ffffff;
+  --bg-surface:     #ffffff;
+  --bg-surface-2:   #f8fafc;
+  --bg-input:       #f8fafc;
+  --bg-subtle:      rgba(0, 0, 0, 0.04);
+  --bg-hover:       rgba(0, 0, 0, 0.04);
+  --color-text:     #0f172a;
+  --color-muted:    #64748b;
+  --color-border:   rgba(0, 0, 0, 0.10);
+  --color-border-2: rgba(0, 0, 0, 0.06);
+  --navbar-bg:      rgba(255, 255, 255, 0.90);
+  --navbar-border:  rgba(0, 0, 0, 0.08);
+  --dropdown-bg:    #ffffff;
+  --dialog-bg:      #ffffff;
+  --dialog-overlay: rgba(0, 0, 0, 0.50);
+  --scrollbar-track: #e2e8f0;
+  --scrollbar-thumb: #94a3b8;
+  --skeleton-a:     #e2e8f0;
+  --skeleton-b:     #f1f5f9;
+  --table-hover:    rgba(0, 0, 0, 0.03);
+  --recent-card:    rgba(0, 0, 0, 0.03);
+  --chart-grid:     rgba(0, 0, 0, 0.06);
+  --dot-current-ring: #ffffff;
+}
+
+/* ── Dark mode ── */
+html.dark {
+  --bg-page:        #000000;
+  --bg-surface:     #0d1526;
+  --bg-surface-2:   #0f1629;
+  --bg-input:       rgba(255, 255, 255, 0.05);
+  --bg-subtle:      rgba(255, 255, 255, 0.04);
+  --bg-hover:       rgba(255, 255, 255, 0.05);
+  --color-text:     #f1f5f9;
+  --color-muted:    #64748b;
+  --color-border:   rgba(255, 255, 255, 0.08);
+  --color-border-2: rgba(255, 255, 255, 0.05);
+  --navbar-bg:      rgba(9, 14, 26, 0.85);
+  --navbar-border:  rgba(255, 255, 255, 0.08);
+  --dropdown-bg:    #0f1629;
+  --dialog-bg:      #0d1526;
+  --dialog-overlay: rgba(0, 0, 0, 0.70);
+  --scrollbar-track: #0f1629;
+  --scrollbar-thumb: #1e3a5f;
+  --skeleton-a:     hsl(217, 33%, 15%);
+  --skeleton-b:     hsl(217, 33%, 20%);
+  --table-hover:    rgba(255, 255, 255, 0.03);
+  --recent-card:    rgba(255, 255, 255, 0.03);
+  --chart-grid:     rgba(255, 255, 255, 0.05);
+  --dot-current-ring: #0d1526;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background-color: var(--bg-page);
+  color: var(--color-text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@layer utilities {
+  /* Glass morphism */
+  .glass {
+    background: var(--bg-subtle);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+  }
+
+  .glass-strong {
+    background: var(--bg-subtle);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow effects */
+  .glow-blue {
+    box-shadow: 0 0 30px rgba(96, 165, 250, 0.25), 0 0 60px rgba(96, 165, 250, 0.10);
+  }
+
+  /* Page background */
+  .page-bg {
+    background-color: var(--bg-page);
+    transition: background-color 0.25s ease;
+  }
+
+  /* Card hover */
+  .card-hover {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #60a5fa; }
+
+  /* Status badges — plain CSS */
+  .status-badge-Pending        { background: rgba(245,158, 11,0.15); color:#fbbf24; border-color:rgba(245,158, 11,0.30); }
+  .status-badge-PickedUp       { background: rgba( 56,189,248,0.15); color:#38bdf8; border-color:rgba( 56,189,248,0.30); }
+  .status-badge-InTransit      { background: rgba( 96,165,250,0.15); color:#60a5fa; border-color:rgba( 96,165,250,0.30); }
+  .status-badge-OutForDelivery { background: rgba(167,139,250,0.15); color:#a78bfa; border-color:rgba(167,139,250,0.30); }
+  .status-badge-Delivered      { background: rgba( 52,211,153,0.15); color:#34d399; border-color:rgba( 52,211,153,0.30); }
+  .status-badge-Cancelled      { background: rgba(248,113,113,0.15); color:#f87171; border-color:rgba(248,113,113,0.30); }
+  .status-badge-Returned       { background: rgba(251,146, 60,0.15); color:#fb923c; border-color:rgba(251,146, 60,0.30); }
+}
+
+/* Animations */
+@keyframes fadeIn   { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideIn  { from { opacity:0; transform:translateX(-20px);} to { opacity:1; transform:translateX(0); } }
+@keyframes shimmer  { 0%{background-position:-200% 0;} 100%{background-position:200% 0;} }
+
+.animate-fade-in  { animation: fadeIn  0.4s ease forwards; }
+.animate-slide-in { animation: slideIn 0.4s ease forwards; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--skeleton-a) 25%, var(--skeleton-b) 50%, var(--skeleton-a) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 0.5rem;
+}
