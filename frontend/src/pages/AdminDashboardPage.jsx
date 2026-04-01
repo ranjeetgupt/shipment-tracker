@@ -152,8 +152,8 @@ export default function AdminDashboardPage() {
         shipmentApi.getStats(),
         shipmentApi.getAll({ limit: 50, status: statusFilter, search: searchQuery || undefined }),
       ]);
-      setStats(statsRes.data);
-      setShipments(shipmentsRes.data);
+      setStats(statsRes?.data || null);
+      setShipments(shipmentsRes?.data || []);
     } catch { toast.error("Failed to load dashboard data"); }
     finally { setLoading(false); }
   }, [statusFilter, searchQuery]);
