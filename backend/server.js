@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./src/config/db.js";
 import shipmentRoutes from "./src/routes/shipmentRoutes.js";
@@ -14,7 +13,6 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173" || "https://shipment-tracker-80nj.onrender.com", credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
