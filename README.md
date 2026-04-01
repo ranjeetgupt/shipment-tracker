@@ -21,7 +21,7 @@ shipment-tracker/
 │   ├── .env
 │   └── package.json
 │
-└── shipment-frontend/          # React + Vite + Tailwind v4 + shadcn/ui
+└── frontend/          # React + Vite + Tailwind v4 + shadcn/ui
     ├── src/
     │   ├── components/
     │   │   ├── ui/             # shadcn-style UI components
@@ -84,12 +84,12 @@ npm run dev       # runs on http://localhost:5000
 
 ### 2. Start Frontend
 ```bash
-cd shipment-tracker/shipment-frontend
+cd shipment-tracker/frontend
 npm install
 npm run dev       # runs on http://localhost:5173
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 | Method | Endpoint                         | Description          |
 |--------|----------------------------------|----------------------|
