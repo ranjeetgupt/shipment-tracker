@@ -15,7 +15,7 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: true,
+  origin: 'https://shipment-tracker-delta.vercel.app/',
   credentials: true
 }));
 app.use(express.json());
